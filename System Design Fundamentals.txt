@@ -1,0 +1,69 @@
+System Design Fundamentals
+---------------------------
+https://interviewready.io/learn/system-design-course/basics/an_introduction_to_distributed_systems
+
+An Introduction to Distributed Systems
+---------------------------------------
+	We will take a real time example and see what are all the problems can arise and how do we address it via system design.
+	
+	Pizza Shop:
+	-----------
+		We start a pizza shop and we have 1 chef for now. Ok everything goes well so far!
+		But once our customers start growing how can we serve them in better way?
+		
+		Scaling
+		--------
+			-> Initially we will make our 1 chef to work harder and pay more to serve customers.
+			-> This is called Vertical Scaling.
+			
+		Preprocessing Cron job or Scheduled Task
+		------------------------------------------
+			-> We can also make some common work like pizza bases prepared during non peak hours and keep it ready for peak hours so that more number of orders can be served since bases are already ready.
+			-> With this chef would not be wasting more time on preparing bases during peak hours.	
+			
+		Back up
+		--------	
+			-> Ok now we have found a way to serve more customers, but what if our chef is on leave for a day? our business is lost for that day? 
+			-> Definitely we will not want that to happen obviously right..... 
+		
+		So, we will have some back up chef ready and get them work for the day when primary chef is on leave.
+		
+		Horizontal Scaling
+		-------------------
+			-> At somepoint our business will keep growing and we want to make the back up chef permanent employee, infact hire more chefs.
+			-> This is called Horizontal Scaling. Buying more resources of same type.
+			
+				
+			-> Now we hired more chefs and we can also have different chefs specialized in specific dish like some chefs are good at Pizzas and some for Garlic breads.
+			-> May be chefs hired for Garlic breads can scale at different level as the demand for it would be less compared to pizza (can scale at higher level).
+			
+				PChefs: 7 members ; GChefs: 3 members
+			
+		Load Balancer
+		--------------	
+			-> Now the problem would be how would we pass the order to different chefs (garlic bread, pizza) when we receive the order.
+			
+			-> One way is to randomly assign the orders like pizza order can be assigned to GCheff also, Garlic bread can be assigned to PChef also which is obviously not the efficient one.
+			
+			-> We need some logic to assign bread orders to only GCheffs and pizza orders to PChefs. In this way, for getting the status of Garlic bread orders we can check/ask to the GCheffs (team) and vice-versa for Pizza orders. 
+			-> This makes system cleaner without much fuss.
+			-> This can be done with the help of something called as "Load Balancer".
+		
+		Resilience 
+		----------
+			-> Now we can see our system is clearly scalable and server more orders, but there is a problem with this also? what if there is some power issue or some problem in our pizza shop or in the area where we are located?
+			
+			-> The same we will lose business for that day or period as we are not in a position to prepare and deliver orders.
+			Nopeeeee!!!!! definitely we want to mitigate this!!
+			
+			-> The solution is "Resilience" (adding more backup)
+			
+			-> This is bigger step, we try to open a branch of our pizza shop in a different area and with this we can serve customer who are near to that region even faster and the customers who are not able to server by Shop 1, though it takes more time we can atleast serve them in whatever minimum possible way.	
+			
+				Microservice architecture, Extensibility, Distributed, Decoupling, Logging and Metrics.... We will continue this further.
+				
+				
+		
+		
+			
+			
